@@ -15,34 +15,35 @@ export default function Hero() {
           {/* Content */}
           <div className="text-center lg:text-left">
             <Badge className="mb-6 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
-              🤖 AI Expert & Innovation Leader
+              🚀 Senior Technology Consultant & Digital Innovation Leader
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-6">
               <span className="block">Amardeep Bajpai</span>
               <span className="block text-gradient mt-2">
-                Shaping the Future with AI
+                Driving Digital Transformation
               </span>
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
-              Leading AI expert and thought leader driving transformative solutions in artificial intelligence. 
-              Helping organizations navigate the future through innovative AI strategies and cutting-edge implementation.
+              Senior Associate at Publicis Sapient with 13+ years of experience in technology consulting 
+              and digital innovation. Leading transformative projects that drive business growth and 
+              operational excellence across diverse industries.
             </p>
             
             {/* Stats */}
             <div className="flex flex-wrap gap-6 justify-center lg:justify-start mb-8">
               <div className="flex items-center gap-2 text-sm">
                 <Award className="h-4 w-4 text-primary" />
-                <span className="font-medium">15+ Awards</span>
+                <span className="font-medium">13+ Years Experience</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <Users className="h-4 w-4 text-secondary" />
-                <span className="font-medium">500+ Clients</span>
+                <span className="font-medium">100+ Projects</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <TrendingUp className="h-4 w-4 text-accent" />
-                <span className="font-medium">$50M+ Impact</span>
+                <span className="font-medium">Global Impact</span>
               </div>
             </div>
             
