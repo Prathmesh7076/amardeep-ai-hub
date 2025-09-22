@@ -97,6 +97,110 @@ export default function About() {
           </div>
         </div>
 
+        {/* Professional Timeline */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-heading font-semibold text-center mb-12">Professional Timeline</h3>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-primary"></div>
+              
+              <div className="space-y-12">
+                {[
+                  {
+                    year: "2024 - Present",
+                    title: "Senior Associate (Lead)",
+                    company: "Publicis Sapient",
+                    description: "Leading digital transformation initiatives for Fortune 500 clients across US markets. Specializing in AI-driven solutions and enterprise architecture.",
+                    side: "left"
+                  },
+                  {
+                    year: "2020 - 2024",
+                    title: "Associate Technology Consultant",
+                    company: "Publicis Sapient",
+                    description: "Led cross-functional teams in delivering complex technology solutions. Focused on cloud migration and digital innovation projects.",
+                    side: "right"
+                  },
+                  {
+                    year: "2016 - 2020",
+                    title: "Senior Software Engineer",
+                    company: "Technology Consulting",
+                    description: "Developed scalable software solutions and mentored junior developers. Specialized in full-stack development and system architecture.",
+                    side: "left"
+                  },
+                  {
+                    year: "2011 - 2016",
+                    title: "Software Engineer",
+                    company: "Early Career",
+                    description: "Started journey in software development, building foundational skills in programming and system design.",
+                    side: "right"
+                  }
+                ].map((item, index) => (
+                  <div key={index} className={`flex items-center ${item.side === 'left' ? 'justify-start' : 'justify-end'}`}>
+                    <div className={`w-5/12 ${item.side === 'left' ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
+                      <Card className="hover-lift">
+                        <CardContent className="p-6">
+                          <div className="text-sm text-primary font-semibold mb-2">{item.year}</div>
+                          <h4 className="font-heading font-semibold text-lg mb-1">{item.title}</h4>
+                          <div className="text-secondary font-medium mb-3">{item.company}</div>
+                          <p className="text-sm text-muted-foreground">{item.description}</p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                    <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+                    <div className="w-5/12"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Skills & Expertise */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-heading font-semibold text-center mb-12">Core Expertise</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                category: "AI & Machine Learning",
+                skills: ["Neural Networks", "Natural Language Processing", "Computer Vision", "Predictive Analytics", "MLOps"]
+              },
+              {
+                category: "Cloud Technologies",
+                skills: ["AWS", "Azure", "Google Cloud", "Kubernetes", "Docker", "Serverless"]
+              },
+              {
+                category: "Enterprise Architecture",
+                skills: ["Microservices", "API Design", "System Integration", "Scalability", "Security"]
+              },
+              {
+                category: "Data & Analytics",
+                skills: ["Big Data", "Data Warehousing", "Business Intelligence", "Real-time Analytics", "ETL"]
+              },
+              {
+                category: "Leadership & Strategy",
+                skills: ["Team Leadership", "Digital Strategy", "Agile Methodologies", "Stakeholder Management", "Innovation"]
+              },
+              {
+                category: "Programming & Development",
+                skills: ["Python", "JavaScript", "Java", "React", "Node.js", "SQL"]
+              }
+            ].map((expertise, index) => (
+              <Card key={index} className="hover-lift">
+                <CardContent className="p-6">
+                  <h4 className="font-heading font-semibold text-lg mb-4 text-primary">{expertise.category}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {expertise.skills.map((skill, skillIndex) => (
+                      <Badge key={skillIndex} variant="secondary" className="text-xs">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* Mission, Vision, Values */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((value, index) => (
