@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Award, Users, TrendingUp } from "lucide-react";
-import heroImage from "@/assets/hero-amardeep.jpg";
+import heroImage from "@/assets/amardeep-profile.jpg";
 
 export default function Hero() {
   return (
