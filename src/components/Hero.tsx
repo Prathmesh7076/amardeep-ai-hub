@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Award, Users, TrendingUp } from "lucide-react";
 import heroImage from "@/assets/amardeep-profile.jpg";
+import BookingForm from "./BookingForm";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -49,12 +51,18 @@ export default function Hero() {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="group">
-                Book Consultation
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button variant="outline" size="lg">
-                Explore Services
+              <BookingForm 
+                trigger={
+                  <Button size="lg" className="group">
+                    Book Consultation
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                }
+              />
+              <Button variant="outline" size="lg" asChild>
+                <Link to="/services">
+                  Explore Services
+                </Link>
               </Button>
             </div>
           </div>

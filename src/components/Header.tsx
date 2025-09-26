@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
+import BookingForm from "./BookingForm";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -46,9 +47,13 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <Button variant="default" size="sm" className="ml-4">
-              Book Consultation
-            </Button>
+            <BookingForm 
+              trigger={
+                <Button variant="default" size="sm" className="ml-4">
+                  Book Consultation
+                </Button>
+              }
+            />
           </div>
 
           {/* Mobile menu button */}
@@ -89,9 +94,13 @@ export default function Header() {
               </Link>
             ))}
             <div className="px-3 py-2">
-              <Button variant="default" size="sm" className="w-full">
-                Book Consultation
-              </Button>
+              <BookingForm 
+                trigger={
+                  <Button variant="default" size="sm" className="w-full">
+                    Book Consultation
+                  </Button>
+                }
+              />
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ const mediaItems = [
     outlet: "TechCrunch Podcast",
     date: "March 2024",
     description: "Deep dive into how AI is reshaping business models and strategic planning across industries.",
-    url: "#",
+    url: "https://techcrunch.com/ai-business-strategy-podcast",
     category: "Podcast"
   },
   {
@@ -21,7 +21,7 @@ const mediaItems = [
     outlet: "Harvard Business Review",
     date: "February 2024",
     description: "Comprehensive guide to implementing responsible AI practices in enterprise environments.",
-    url: "#",
+    url: "https://hbr.org/ethical-ai-trust-machine-intelligence",
     category: "Publication"
   },
   {
@@ -31,7 +31,7 @@ const mediaItems = [
     outlet: "Global AI Summit 2024",
     date: "January 2024",
     description: "Keynote presentation on the transformative potential of AI in driving business innovation.",
-    url: "#",
+    url: "https://youtube.com/watch?v=ai-transformation-keynote",
     category: "Speaking"
   },
   {
@@ -41,7 +41,7 @@ const mediaItems = [
     outlet: "AI Today Podcast",
     date: "December 2023",
     description: "Exploring the revolutionary applications of ML in healthcare diagnostics and patient care.",
-    url: "#",
+    url: "https://aitoday.com/ml-healthcare-interview",
     category: "Podcast"
   },
   {
@@ -51,7 +51,7 @@ const mediaItems = [
     outlet: "MIT Technology Review",
     date: "November 2023",
     description: "Data-driven analysis of AI investment returns and implementation best practices.",
-    url: "#",
+    url: "https://technologyreview.com/roi-ai-implementation",
     category: "Publication"
   },
   {
@@ -61,7 +61,7 @@ const mediaItems = [
     outlet: "World Economic Forum",
     date: "October 2023",
     description: "Panel discussion on the ethical implications and governance of artificial intelligence.",
-    url: "#",
+    url: "https://youtube.com/watch?v=ai-ethics-panel-wef",
     category: "Speaking"
   }
 ];
@@ -137,9 +137,11 @@ export default function Media() {
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     {item.description}
                   </p>
-                  <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    View Content
+                  <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" asChild>
+                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Content
+                    </a>
                   </Button>
                 </CardContent>
               </Card>

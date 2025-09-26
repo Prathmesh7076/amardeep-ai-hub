@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,41 +12,87 @@ import {
   Twitter, 
   MessageCircle,
   Calendar,
-  Send
+  Send,
+  Youtube
 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import BookingForm from "./BookingForm";
 
 const contactMethods = [
   {
     icon: Mail,
     title: "Email",
-    description: "amardeep@example.com",
+    description: "contact@amardeepbajpai.com",
     action: "Send Email",
-    href: "mailto:amardeep@example.com"
+    href: "mailto:contact@amardeepbajpai.com"
   },
   {
     icon: Phone,
     title: "Phone",
-    description: "+1 (555) 123-4567",
+    description: "+91-120-4567890",
     action: "Call Now",
-    href: "tel:+15551234567"
+    href: "tel:+911204567890"
   },
   {
     icon: Linkedin,
     title: "LinkedIn",
     description: "Connect professionally",
     action: "View Profile",
-    href: "https://linkedin.com/in/amardeepbajpai"
+    href: "https://in.linkedin.com/in/amardeepbajpai"
   },
   {
-    icon: Twitter,
-    title: "Twitter",
-    description: "@amardeepbajpai",
-    action: "Follow",
-    href: "https://twitter.com/amardeepbajpai"
+    icon: Youtube,
+    title: "YouTube",
+    description: "AI Insights & Tutorials",
+    action: "Subscribe",
+    href: "https://youtube.com/@amardeepbajpai"
   }
 ];
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    subject: "",
+    message: ""
+  });
+  const { toast } = useToast();
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    console.log("Contact Form Submitted:", formData);
+    
+    toast({
+      title: "Message Sent!",
+      description: "Thank you for your message. I'll get back to you within 24 hours.",
+    });
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      company: "",
+      subject: "",
+      message: ""
+    });
+  };
+
   return (
     <section id="contact" className="py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,39 +117,48 @@ export default function Contact() {
               <h3 className="text-xl font-heading font-semibold">Send a Message</h3>
             </div>
             
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                    First Name
+                    First Name *
                   </label>
                   <Input
                     id="firstName"
+                    value={formData.firstName}
+                    onChange={(e) => handleInputChange("firstName", e.target.value)}
                     placeholder="Your first name"
                     className="w-full"
+                    required
                   />
                 </div>
                 <div>
                   <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                    Last Name
+                    Last Name *
                   </label>
                   <Input
                     id="lastName"
+                    value={formData.lastName}
+                    onChange={(e) => handleInputChange("lastName", e.target.value)}
                     placeholder="Your last name"
                     className="w-full"
+                    required
                   />
                 </div>
               </div>
               
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email Address
+                  Email Address *
                 </label>
                 <Input
                   id="email"
                   type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
                   placeholder="your.email@company.com"
                   className="w-full"
+                  required
                 />
               </div>
               
@@ -112,6 +168,8 @@ export default function Contact() {
                 </label>
                 <Input
                   id="company"
+                  value={formData.company}
+                  onChange={(e) => handleInputChange("company", e.target.value)}
                   placeholder="Your company name"
                   className="w-full"
                 />
@@ -123,6 +181,8 @@ export default function Contact() {
                 </label>
                 <Input
                   id="subject"
+                  value={formData.subject}
+                  onChange={(e) => handleInputChange("subject", e.target.value)}
                   placeholder="What would you like to discuss?"
                   className="w-full"
                 />
@@ -130,13 +190,16 @@ export default function Contact() {
               
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
+                  Message *
                 </label>
                 <Textarea
                   id="message"
+                  value={formData.message}
+                  onChange={(e) => handleInputChange("message", e.target.value)}
                   placeholder="Tell me about your AI challenges and goals..."
                   rows={6}
                   className="w-full"
+                  required
                 />
               </div>
               
@@ -159,10 +222,14 @@ export default function Contact() {
                 Schedule a 30-minute discovery call to discuss your AI opportunities 
                 and how I can help accelerate your transformation.
               </p>
-              <Button variant="secondary" size="lg" className="w-full group">
-                Schedule Call
-                <Calendar className="ml-2 h-4 w-4" />
-              </Button>
+              <BookingForm 
+                trigger={
+                  <Button variant="secondary" size="lg" className="w-full group">
+                    Schedule Call
+                    <Calendar className="ml-2 h-4 w-4" />
+                  </Button>
+                }
+              />
             </div>
 
             {/* Contact Methods */}
@@ -175,8 +242,10 @@ export default function Contact() {
                     </div>
                     <h4 className="font-heading font-semibold mb-2">{method.title}</h4>
                     <p className="text-sm text-muted-foreground mb-3">{method.description}</p>
-                    <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      {method.action}
+                    <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors" asChild>
+                      <a href={method.href} target="_blank" rel="noopener noreferrer">
+                        {method.action}
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>
@@ -191,10 +260,10 @@ export default function Contact() {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-heading font-semibold mb-2">Office Location</h4>
+                    <h4 className="font-heading font-semibold mb-2">Corporate Office</h4>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      San Francisco Bay Area<br />
-                      California, United States<br />
+                      Sector 62, Noida<br />
+                      Uttar Pradesh, India<br />
                       <span className="text-xs">Available for global consulting</span>
                     </p>
                   </div>

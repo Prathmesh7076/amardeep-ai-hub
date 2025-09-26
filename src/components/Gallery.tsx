@@ -5,6 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ZoomIn, Calendar, MapPin, Users } from "lucide-react";
 
+import aiKeynoteImage from "@/assets/gallery/ai-keynote-summit.jpg";
+import aiWorkshopImage from "@/assets/gallery/ai-workshop-fortune500.jpg";
+import healthcareAIImage from "@/assets/gallery/healthcare-ai-panel.jpg";
+import mitLectureImage from "@/assets/gallery/mit-guest-lecture.jpg";
+import techCrunchImage from "@/assets/gallery/techcrunch-disrupt.jpg";
+import worldEconomicImage from "@/assets/gallery/world-economic-forum.jpg";
+import innovationLabImage from "@/assets/gallery/innovation-lab.jpg";
+import aiEthicsImage from "@/assets/gallery/ai-ethics-symposium.jpg";
+
 const galleryItems = [
   {
     id: 1,
@@ -13,7 +22,7 @@ const galleryItems = [
     category: "Speaking",
     date: "January 2024",
     location: "San Francisco, CA",
-    imageUrl: "/api/placeholder/600/400",
+    imageUrl: aiKeynoteImage,
     attendees: "5,000+"
   },
   {
@@ -23,7 +32,7 @@ const galleryItems = [
     category: "Workshop",
     date: "March 2024",
     location: "New York, NY",
-    imageUrl: "/api/placeholder/600/400",
+    imageUrl: aiWorkshopImage,
     attendees: "50"
   },
   {
@@ -33,7 +42,7 @@ const galleryItems = [
     category: "Panel",
     date: "February 2024",
     location: "Boston, MA",
-    imageUrl: "/api/placeholder/600/400",
+    imageUrl: healthcareAIImage,
     attendees: "300"
   },
   {
@@ -43,7 +52,7 @@ const galleryItems = [
     category: "Education",
     date: "April 2024",
     location: "Cambridge, MA",
-    imageUrl: "/api/placeholder/600/400",
+    imageUrl: mitLectureImage,
     attendees: "200"
   },
   {
@@ -53,7 +62,7 @@ const galleryItems = [
     category: "Event",
     date: "December 2023",
     location: "San Francisco, CA",
-    imageUrl: "/api/placeholder/600/400",
+    imageUrl: techCrunchImage,
     attendees: "10,000+"
   },
   {
@@ -63,7 +72,7 @@ const galleryItems = [
     category: "Roundtable",
     date: "January 2024",
     location: "Davos, Switzerland",
-    imageUrl: "/api/placeholder/600/400",
+    imageUrl: worldEconomicImage,
     attendees: "100"
   },
   {
@@ -73,7 +82,7 @@ const galleryItems = [
     category: "Behind the Scenes",
     date: "Ongoing",
     location: "Silicon Valley",
-    imageUrl: "/api/placeholder/600/400",
+    imageUrl: innovationLabImage,
     attendees: "Team"
   },
   {
@@ -83,7 +92,7 @@ const galleryItems = [
     category: "Symposium",
     date: "March 2024",
     location: "Stanford, CA",
-    imageUrl: "/api/placeholder/600/400",
+    imageUrl: aiEthicsImage,
     attendees: "500"
   }
 ];

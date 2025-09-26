@@ -11,6 +11,8 @@ import {
   ArrowRight,
   CheckCircle
 } from "lucide-react";
+import BookingForm from "./BookingForm";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -95,9 +97,11 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors" asChild>
+                  <Link to="/contact">
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -114,12 +118,18 @@ export default function Services() {
             Schedule a consultation to explore tailored solutions for your unique challenges.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" className="group">
-              Book Free Consultation
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white hover:text-primary">
-              Download Service Guide
+            <BookingForm 
+              trigger={
+                <Button variant="secondary" size="lg" className="group">
+                  Book Free Consultation
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              }
+            />
+            <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white hover:text-primary" asChild>
+              <Link to="/contact">
+                Get Service Guide
+              </Link>
             </Button>
           </div>
         </div>

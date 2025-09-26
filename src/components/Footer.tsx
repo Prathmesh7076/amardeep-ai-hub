@@ -31,10 +31,10 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Linkedin, href: "https://linkedin.com/in/amardeepbajpai", label: "LinkedIn" },
+  { icon: Linkedin, href: "https://in.linkedin.com/in/amardeepbajpai", label: "LinkedIn" },
   { icon: Twitter, href: "https://twitter.com/amardeepbajpai", label: "Twitter" },
   { icon: Youtube, href: "https://youtube.com/@amardeepbajpai", label: "YouTube" },
-  { icon: Mail, href: "mailto:amardeep@example.com", label: "Email" }
+  { icon: Mail, href: "mailto:contact@amardeepbajpai.com", label: "Email" }
 ];
 
 export default function Footer() {
@@ -63,14 +63,14 @@ export default function Footer() {
             <div className="space-y-3 mb-6">
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                <a href="mailto:amardeep@example.com" className="hover:text-primary transition-colors">
-                  amardeep@example.com
+                <a href="mailto:contact@amardeepbajpai.com" className="hover:text-primary transition-colors">
+                  contact@amardeepbajpai.com
                 </a>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                <a href="tel:+15551234567" className="hover:text-primary transition-colors">
-                  +1 (555) 123-4567
+                <a href="tel:+911204567890" className="hover:text-primary transition-colors">
+                  +91-120-4567890
                 </a>
               </div>
             </div>

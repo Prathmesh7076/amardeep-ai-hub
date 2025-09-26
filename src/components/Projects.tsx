@@ -151,9 +151,7 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  View Case Study
-                </Button>
+                {/* Case study buttons removed as requested */}
               </CardContent>
             </Card>
           ))}
