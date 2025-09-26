@@ -97,12 +97,7 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors" asChild>
-                  <Link to="/contact">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                {/* Learn More button removed as requested */}
               </CardContent>
             </Card>
           ))}

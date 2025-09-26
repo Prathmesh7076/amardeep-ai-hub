@@ -137,12 +137,7 @@ export default function Media() {
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     {item.description}
                   </p>
-                  <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" asChild>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Content
-                    </a>
-                  </Button>
+                  {/* View Content button removed as requested */}
                 </CardContent>
               </Card>
             ))}
