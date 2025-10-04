@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
 import BookingForm from "./BookingForm";
+import { useAuth } from "@/hooks/useAuth";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -19,6 +20,7 @@ const navigation = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -47,13 +49,28 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <BookingForm 
-              trigger={
-                <Button variant="default" size="sm" className="ml-4">
-                  Book Consultation
+            <div className="flex items-center gap-2 ml-4">
+              <BookingForm 
+                trigger={
+                  <Button variant="default" size="sm">
+                    Book Consultation
+                  </Button>
+                }
+              />
+              {user ? (
+                <Button variant="outline" size="sm" onClick={signOut}>
+                  <LogOut className="h-4 w-4 mr-1" />
+                  Logout
                 </Button>
-              }
-            />
+              ) : (
+                <Button variant="outline" size="sm" asChild>
+                  <Link to="/auth">
+                    <LogIn className="h-4 w-4 mr-1" />
+                    Login
+                  </Link>
+                </Button>
+              )}
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -93,7 +110,7 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <div className="px-3 py-2">
+            <div className="px-3 py-2 space-y-2">
               <BookingForm 
                 trigger={
                   <Button variant="default" size="sm" className="w-full">
@@ -101,6 +118,27 @@ export default function Header() {
                   </Button>
                 }
               />
+              {user ? (
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full" 
+                  onClick={() => {
+                    signOut();
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  <LogOut className="h-4 w-4 mr-1" />
+                  Logout
+                </Button>
+              ) : (
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
+                    <LogIn className="h-4 w-4 mr-1" />
+                    Login
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
         </div>

@@ -6,6 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Calendar, Clock, User, Mail, Phone, Building } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 
 interface BookingFormProps {
   trigger: React.ReactNode;
@@ -14,6 +16,7 @@ interface BookingFormProps {
 
 export default function BookingForm({ trigger, title = "Book Your AI Consultation" }: BookingFormProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -31,7 +34,7 @@ export default function BookingForm({ trigger, title = "Book Your AI Consultatio
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -44,27 +47,46 @@ export default function BookingForm({ trigger, title = "Book Your AI Consultatio
       return;
     }
 
-    // Simulate form submission
-    console.log("Booking Form Submitted:", formData);
-    
-    toast({
-      title: "Consultation Booked!",
-      description: "Thank you for your interest. I'll contact you within 24 hours to confirm your consultation.",
-    });
+    try {
+      const { error } = await supabase.from('consultations').insert({
+        user_id: user?.id || null,
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        phone: formData.phone || null,
+        company: formData.company || null,
+        service_interest: formData.serviceType,
+        preferred_date: formData.preferredDate || null,
+        preferred_time: formData.preferredTime || null,
+        project_details: formData.message || null,
+      });
 
-    // Reset form and close dialog
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      company: "",
-      serviceType: "",
-      preferredDate: "",
-      preferredTime: "",
-      message: ""
-    });
-    setIsOpen(false);
+      if (error) throw error;
+
+      toast({
+        title: "Consultation Booked!",
+        description: "Thank you for your interest. I'll contact you within 24 hours to confirm your consultation.",
+      });
+
+      // Reset form and close dialog
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        serviceType: "",
+        preferredDate: "",
+        preferredTime: "",
+        message: ""
+      });
+      setIsOpen(false);
+    } catch (error: any) {
+      toast({
+        title: "Booking Failed",
+        description: error.message || "Could not book consultation. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
