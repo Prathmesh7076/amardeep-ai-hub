@@ -16,6 +16,7 @@ import {
   Youtube
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import BookingForm from "./BookingForm";
 
 const contactMethods = [
@@ -64,7 +65,7 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
@@ -76,21 +77,43 @@ export default function Contact() {
       return;
     }
 
-    console.log("Contact Form Submitted:", formData);
-    
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you within 24 hours.",
-    });
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            company: formData.company || null,
+            subject: formData.subject || null,
+            message: formData.message,
+          }
+        ]);
 
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      company: "",
-      subject: "",
-      message: ""
-    });
+      if (error) throw error;
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message. I'll get back to you within 24 hours.",
+      });
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        subject: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
