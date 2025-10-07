@@ -42,7 +42,7 @@ export function useAdminAuth() {
 
   const redirectIfNotAdmin = () => {
     if (!checkingRole && !isLoading && !isAdmin) {
-      navigate('/auth');
+      navigate('/admin/login');
     }
   };
 

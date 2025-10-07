@@ -18,6 +18,7 @@ import AdminUsers from "./pages/admin/Users";
 import AdminContactMessages from "./pages/admin/ContactMessages";
 import AdminConsultations from "./pages/admin/Consultations";
 import AdminProducts from "./pages/admin/Products";
+import AdminLogin from "./pages/admin/Login";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/contacts" element={<AdminContactMessages />} />
