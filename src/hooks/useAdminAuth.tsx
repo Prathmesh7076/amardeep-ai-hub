@@ -1,54 +1,69 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from './useAuth';
 
 export function useAdminAuth() {
-  const { user, isLoading } = useAuth();
+  const [user, setUser] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [checkingRole, setCheckingRole] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function checkAdminRole() {
-      if (!user) {
-        setIsAdmin(false);
-        setCheckingRole(false);
-        return;
+    // Check initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        checkAdminRole(session.user.id);
+      } else {
+        setIsLoading(false);
       }
+    });
 
-      try {
-        const { data, error } = await supabase
-          .from('user_roles')
-          .select('role')
-          .eq('user_id', user.id)
-          .eq('role', 'admin')
-          .maybeSingle();
-
-        if (error) throw error;
-        setIsAdmin(!!data);
-      } catch (error) {
-        console.error('Error checking admin role:', error);
-        setIsAdmin(false);
-      } finally {
-        setCheckingRole(false);
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setUser(session?.user ?? null);
+        if (session?.user) {
+          await checkAdminRole(session.user.id);
+        } else {
+          setIsAdmin(false);
+          setIsLoading(false);
+        }
       }
-    }
+    );
 
-    if (!isLoading) {
-      checkAdminRole();
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function checkAdminRole(userId: string) {
+    try {
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userId)
+        .eq('role', 'admin')
+        .maybeSingle();
+
+      if (error) throw error;
+      setIsAdmin(!!data);
+    } catch (error) {
+      console.error('Error checking admin role:', error);
+      setIsAdmin(false);
+    } finally {
+      setIsLoading(false);
     }
-  }, [user, isLoading]);
+  }
 
   const redirectIfNotAdmin = () => {
-    if (!checkingRole && !isLoading && !isAdmin) {
+    if (!isLoading && !isAdmin && !user) {
       navigate('/admin/login');
     }
   };
 
   return {
+    user,
     isAdmin,
-    isLoading: isLoading || checkingRole,
+    isLoading,
     redirectIfNotAdmin,
   };
 }

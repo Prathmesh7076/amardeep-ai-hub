@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 export default function AdminDashboard() {
-  const { isAdmin, isLoading, redirectIfNotAdmin } = useAdminAuth();
+  const { user, isAdmin, isLoading, redirectIfNotAdmin } = useAdminAuth();
   const [stats, setStats] = useState({
     users: 0,
     contacts: 0,
@@ -15,8 +15,10 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-    redirectIfNotAdmin();
-  }, [isAdmin, isLoading]);
+    if (!isLoading) {
+      redirectIfNotAdmin();
+    }
+  }, [isLoading, isAdmin, user]);
 
   useEffect(() => {
     async function fetchStats() {
@@ -35,16 +37,17 @@ export default function AdminDashboard() {
       });
     }
 
-    if (isAdmin) {
+    if (isAdmin && !isLoading) {
       fetchStats();
     }
-  }, [isAdmin]);
+  }, [isAdmin, isLoading]);
 
   if (isLoading) {
-    return <div className="flex h-screen items-center justify-center">Loading...</div>;
+    return <div className="flex h-screen items-center justify-center bg-background">Loading...</div>;
   }
 
   if (!isAdmin) {
+    redirectIfNotAdmin();
     return null;
   }
 
