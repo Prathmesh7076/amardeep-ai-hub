@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { Shield } from "lucide-react";
 
-const ADMIN_SECRET_KEY = "ADMIN_SECURE_KEY_2024"; // In production, use environment variable
+
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -25,7 +25,6 @@ export default function AdminLogin() {
     fullName: "",
     email: "",
     password: "",
-    adminKey: "",
   });
 
   useEffect(() => {
@@ -97,16 +96,11 @@ export default function AdminLogin() {
     setIsLoading(true);
 
     try {
-      // Verify admin secret key
-      if (registerData.adminKey !== ADMIN_SECRET_KEY) {
-        throw new Error("Invalid admin secret key");
-      }
-
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: registerData.email,
         password: registerData.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/admin`,
+          emailRedirectTo: `${window.location.origin}/admin/login`,
           data: {
             full_name: registerData.fullName,
           },
@@ -115,24 +109,12 @@ export default function AdminLogin() {
 
       if (authError) throw authError;
 
-      if (authData.user) {
-        // Assign admin role
-        const { error: roleError } = await supabase
-          .from('user_roles')
-          .insert({
-            user_id: authData.user.id,
-            role: 'admin',
-          });
+      toast({
+        title: "Account created",
+        description: "Ask an existing admin to grant you admin access.",
+      });
 
-        if (roleError) throw roleError;
-
-        toast({
-          title: "Admin Account Created",
-          description: "You can now login with your credentials.",
-        });
-
-        setRegisterData({ fullName: "", email: "", password: "", adminKey: "" });
-      }
+      setRegisterData({ fullName: "", email: "", password: "" });
     } catch (error: any) {
       toast({
         title: "Registration Failed",
@@ -228,22 +210,8 @@ export default function AdminLogin() {
                     required
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="admin-key">Admin Secret Key</Label>
-                  <Input
-                    id="admin-key"
-                    type="password"
-                    placeholder="Enter admin secret key"
-                    value={registerData.adminKey}
-                    onChange={(e) => setRegisterData({ ...registerData, adminKey: e.target.value })}
-                    required
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    Contact system administrator for the secret key
-                  </p>
-                </div>
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Creating Admin Account..." : "Create Admin Account"}
+                  {isLoading ? "Creating Account..." : "Create Account"}
                 </Button>
               </form>
             </TabsContent>
