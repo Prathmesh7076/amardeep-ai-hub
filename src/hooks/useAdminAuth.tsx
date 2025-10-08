@@ -55,7 +55,7 @@ export function useAdminAuth() {
   }
 
   const redirectIfNotAdmin = () => {
-    if (!isLoading && !isAdmin && !user) {
+    if (!isLoading && (!isAdmin || !user)) {
       navigate('/admin/login');
     }
   };

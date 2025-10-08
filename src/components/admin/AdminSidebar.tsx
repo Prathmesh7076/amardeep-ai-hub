@@ -28,6 +28,10 @@ export function AdminSidebar() {
   const handleSignOut = async () => {
     try {
       await supabase.auth.signOut();
+      toast({
+        title: "Success",
+        description: "Successfully logged out",
+      });
       navigate('/admin/login');
     } catch (error) {
       toast({
