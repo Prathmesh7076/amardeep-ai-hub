@@ -100,7 +100,7 @@ export default function AdminLogin() {
         email: registerData.email,
         password: registerData.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/admin/login`,
+          emailRedirectTo: `${window.location.origin}/admin`,
           data: {
             full_name: registerData.fullName,
           },
@@ -108,13 +108,27 @@ export default function AdminLogin() {
       });
 
       if (authError) throw authError;
+      if (!authData.user) throw new Error("Registration failed");
+
+      // Automatically assign admin role
+      const { error: roleError } = await supabase
+        .from('user_roles')
+        .insert({
+          user_id: authData.user.id,
+          role: 'admin',
+        });
+
+      if (roleError) throw roleError;
 
       toast({
-        title: "Account created",
-        description: "Ask an existing admin to grant you admin access.",
+        title: "Success",
+        description: "Account created successfully! You can now login.",
       });
 
       setRegisterData({ fullName: "", email: "", password: "" });
+      
+      // Auto login after registration
+      navigate('/admin');
     } catch (error: any) {
       toast({
         title: "Registration Failed",
