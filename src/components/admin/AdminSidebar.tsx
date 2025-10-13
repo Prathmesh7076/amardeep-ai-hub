@@ -6,6 +6,7 @@ import {
   MessageSquare, 
   Package, 
   Calendar,
+  Mail,
   LogOut
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ const navigation = [
   { name: 'Users', href: '/admin/users', icon: Users },
   { name: 'Contact Messages', href: '/admin/contacts', icon: MessageSquare },
   { name: 'Consultations', href: '/admin/consultations', icon: Calendar },
+  { name: 'Newsletter', href: '/admin/newsletter', icon: Mail },
   { name: 'Products', href: '/admin/products', icon: Package },
 ];
 

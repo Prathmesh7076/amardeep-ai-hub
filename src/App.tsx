@@ -17,6 +17,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import AdminUsers from "./pages/admin/Users";
 import AdminContactMessages from "./pages/admin/ContactMessages";
 import AdminConsultations from "./pages/admin/Consultations";
+import AdminNewsletter from "./pages/admin/Newsletter";
 import AdminProducts from "./pages/admin/Products";
 import AdminLogin from "./pages/admin/Login";
 
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/contacts" element={<AdminContactMessages />} />
           <Route path="/admin/consultations" element={<AdminConsultations />} />
+          <Route path="/admin/newsletter" element={<AdminNewsletter />} />
           <Route path="/admin/products" element={<AdminProducts />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
