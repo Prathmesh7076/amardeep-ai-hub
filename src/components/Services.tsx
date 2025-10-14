@@ -70,7 +70,7 @@ export default function Services() {
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">
             Comprehensive <span className="text-gradient">AI Solutions</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             From strategic consulting to hands-on implementation, I provide end-to-end AI services 
             that drive measurable business impact and sustainable growth.
           </p>
@@ -86,12 +86,12 @@ export default function Services() {
                 <CardTitle className="text-xl font-heading">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-6">
+                <p className="text-base sm:text-lg text-muted-foreground mb-6 leading-relaxed">
                   {service.description}
                 </p>
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center text-sm">
+                    <li key={i} className="flex items-center text-sm sm:text-base">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
                       {feature}
                     </li>
@@ -108,7 +108,7 @@ export default function Services() {
           <h3 className="text-2xl md:text-3xl font-heading font-bold mb-4">
             Ready to Transform Your Business with AI?
           </h3>
-          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed">
             Let's discuss how AI can drive innovation and growth in your organization. 
             Schedule a consultation to explore tailored solutions for your unique challenges.
           </p>

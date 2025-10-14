@@ -21,7 +21,7 @@ const values = [
   {
     icon: Lightbulb,
     title: "Innovation",
-    description: "Embracing emerging technologies, fostering creative problem-solving, and building scalable solutions that adapt to evolving business needs and market dynamics."
+    description: "Embracing emerging technologies, fostering creative problem-solving, and building scalable solutions that adapt to the evolving business needs and market dynamics."
   }
 ];
 
@@ -36,7 +36,7 @@ export default function About() {
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">
             The Journey of a <span className="text-gradient">Technology Leader</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             From a technology enthusiast to a senior consultant, discover the journey and expertise 
             driving digital transformation and innovation at a global scale.
           </p>
@@ -47,28 +47,28 @@ export default function About() {
           <div>
             <h3 className="text-2xl font-heading font-semibold mb-6">My Journey</h3>
             <div className="prose prose-lg text-muted-foreground space-y-4">
-              <p className="text-base sm:text-lg">
+              <p className="text-lg sm:text-xl leading-relaxed">
                 With over 13 years of experience in technology consulting and digital transformation, 
                 I've built my career at the intersection of technology innovation and business strategy 
                 at Publicis Sapient, one of the world's leading digital transformation companies.
               </p>
-              <p className="text-base sm:text-lg">
+              <p className="text-lg sm:text-xl leading-relaxed">
                 Currently serving as a Senior Associate (Lead) based in Gurgaon with assignments 
                 across the United States, I've had the privilege of working with diverse clients 
                 ranging from Fortune 500 enterprises to emerging startups, helping them navigate 
                 complex technological challenges and drive measurable business outcomes.
               </p>
-              <p className="text-base sm:text-lg">
+              <p className="text-lg sm:text-xl leading-relaxed">
                 My journey has taken me across multiple industries and geographies, allowing me to 
                 develop a deep understanding of how technology can be leveraged to solve real-world 
                 problems. I specialize in architecting scalable solutions, leading cross-functional 
                 teams, and translating business requirements into innovative technology implementations.
               </p>
-              <p className="text-base sm:text-lg">
+              <p className="text-lg sm:text-xl leading-relaxed">
                 As a technology leader, I'm passionate about emerging technologies, particularly AI 
                 and machine learning, and their potential to transform how businesses operate. I 
                 believe in building solutions that not only meet today's needs but also create 
-                foundations for the future growth and innovation.
+                a foundation for future growth and innovation.
               </p>
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function About() {
             <div className="relative">
               <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-primary"></div>
               
-              <div className="space-y-12">
+              <div className="space-y-16">
                 {[
                   {
                     year: "2024 - Present",
@@ -135,19 +135,38 @@ export default function About() {
                     side: "right"
                   }
                 ].map((item, index) => (
-                  <div key={index} className={`flex items-center ${item.side === 'left' ? 'justify-start' : 'justify-end'}`}>
-                    <div className={`w-5/12 ${item.side === 'left' ? 'pr-8' : 'pl-8'}`}>
-                      <Card className="hover-lift">
-                        <CardContent className="p-6 text-left">
-                          <div className="text-sm text-primary font-semibold mb-2">{item.year}</div>
-                          <h4 className="font-heading font-semibold text-lg mb-1">{item.title}</h4>
-                          <div className="text-secondary font-medium mb-3">{item.company}</div>
-                          <p className="text-sm text-muted-foreground">{item.description}</p>
-                        </CardContent>
-                      </Card>
-                    </div>
-                    <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
-                    <div className="w-5/12"></div>
+                  <div key={index} className="relative flex items-center">
+                    {item.side === 'left' ? (
+                      <>
+                        <div className="w-1/2 pr-8 text-right">
+                          <Card className="hover-lift">
+                            <CardContent className="p-6">
+                              <div className="text-sm text-primary font-semibold mb-2">{item.year}</div>
+                              <h4 className="font-heading font-semibold text-lg mb-1">{item.title}</h4>
+                              <div className="text-secondary font-medium mb-3">{item.company}</div>
+                              <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                            </CardContent>
+                          </Card>
+                        </div>
+                        <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+                        <div className="w-1/2"></div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="w-1/2"></div>
+                        <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
+                        <div className="w-1/2 pl-8 text-left">
+                          <Card className="hover-lift">
+                            <CardContent className="p-6">
+                              <div className="text-sm text-primary font-semibold mb-2">{item.year}</div>
+                              <h4 className="font-heading font-semibold text-lg mb-1">{item.title}</h4>
+                              <div className="text-secondary font-medium mb-3">{item.company}</div>
+                              <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </>
+                    )}
                   </div>
                 ))}
               </div>
@@ -205,12 +224,12 @@ export default function About() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((value, index) => (
             <Card key={index} className="hover-lift">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <value.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-heading font-semibold text-lg mb-3 text-left">{value.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed text-left">
+                <h3 className="font-heading font-semibold text-lg mb-3">{value.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {value.description}
                 </p>
               </CardContent>
