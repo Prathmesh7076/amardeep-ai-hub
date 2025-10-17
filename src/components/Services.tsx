@@ -67,7 +67,7 @@ export default function Services() {
           <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
             Services & Specialization
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-6">
             Comprehensive <span className="text-gradient">AI Solutions</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground">
@@ -121,10 +121,16 @@ export default function Services() {
                 </Button>
               }
             />
-            <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white hover:text-primary" asChild>
-              <Link to="/contact">
-                Get Service Guide
-              </Link>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-white/20 text-white hover:bg-white hover:text-primary" 
+              onClick={() => {
+                const footer = document.querySelector('footer');
+                footer?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+            >
+              Get Service Guide
             </Button>
           </div>
         </div>

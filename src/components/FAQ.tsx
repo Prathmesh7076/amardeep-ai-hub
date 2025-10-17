@@ -7,6 +7,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
+import BookingForm from "./BookingForm";
+import { Link } from "react-router-dom";
 
 const faqs = [
   {
@@ -102,12 +104,18 @@ export default function FAQ() {
                 needs and provide personalized guidance for your AI journey.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="group">
-                  Schedule a Call
-                  <MessageCircle className="ml-2 h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="lg">
-                  Send Message
+                <BookingForm 
+                  trigger={
+                    <Button size="lg" className="group">
+                      Schedule a Call
+                      <MessageCircle className="ml-2 h-4 w-4" />
+                    </Button>
+                  }
+                />
+                <Button variant="outline" size="lg" asChild>
+                  <Link to="/contact">
+                    Send Message
+                  </Link>
                 </Button>
               </div>
             </div>

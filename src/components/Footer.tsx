@@ -15,22 +15,22 @@ import {
 
 const footerLinks = {
   services: [
-    { name: "AI Strategy", href: "#services" },
-    { name: "Machine Learning", href: "#services" },
-    { name: "Digital Transformation", href: "#services" },
-    { name: "Executive Training", href: "#services" }
+    { name: "AI Strategy", href: "/services" },
+    { name: "Machine Learning", href: "/services" },
+    { name: "Digital Transformation", href: "/services" },
+    { name: "Executive Training", href: "/services" }
   ],
   company: [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Media", href: "#media" },
-    { name: "FAQ", href: "#faq" }
+    { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "Media", href: "/media" },
+    { name: "FAQ", href: "/faq" }
   ],
   resources: [
-    { name: "Blog", href: "#" },
-    { name: "Case Studies", href: "#projects" },
-    { name: "White Papers", href: "#" },
-    { name: "Speaking", href: "#media" }
+    { name: "Gallery", href: "/gallery" },
+    { name: "Case Studies", href: "/projects" },
+    { name: "Contact", href: "/contact" },
+    { name: "Services", href: "/services" }
   ]
 };
 

@@ -86,7 +86,7 @@ export default function Projects() {
           <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
             Projects & Impact
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-6">
             Transformative <span className="text-gradient">AI Solutions</span>
           </h2>
           <p className="text-lg text-muted-foreground">

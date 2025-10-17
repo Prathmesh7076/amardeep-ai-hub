@@ -75,6 +75,8 @@ export default function Hero() {
                 src={heroImage}
                 alt="Amardeep Bajpai - AI Expert and Thought Leader"
                 className="relative rounded-2xl shadow-strong hover-lift w-full max-w-lg mx-auto"
+                loading="eager"
+                fetchPriority="high"
               />
             </div>
             

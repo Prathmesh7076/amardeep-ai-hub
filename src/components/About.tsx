@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Target, Eye, Heart, Lightbulb } from "lucide-react";
+import { Target, Eye, Heart, Lightbulb, MapPin, Briefcase, Rocket, Trophy, Users } from "lucide-react";
 
 const values = [
   {
@@ -33,7 +33,7 @@ export default function About() {
           <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
             About Amardeep
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-6">
             The Journey of a <span className="text-gradient">Technology Leader</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground">
@@ -89,28 +89,40 @@ export default function About() {
                 <div className="text-3xl font-bold text-accent mb-2">15+</div>
                 <div className="text-sm text-muted-foreground">Client Organizations</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">Global</div>
-                <div className="text-sm text-muted-foreground">Impact & Reach</div>
-              </div>
+              <a 
+                href="https://www.google.com/maps/place/Noida,+Uttar+Pradesh,+India" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-center hover:bg-primary/5 rounded-lg p-2 transition-colors group"
+              >
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <div className="text-xl font-bold text-primary">Noida</div>
+                </div>
+                <div className="text-sm text-muted-foreground group-hover:text-primary transition-colors">Location, India</div>
+              </a>
             </div>
           </div>
         </div>
 
         {/* Professional Timeline */}
         <div className="mb-16">
-          <h3 className="text-2xl font-heading font-semibold text-center mb-12">Professional Timeline</h3>
-          <div className="max-w-4xl mx-auto">
+          <h3 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-center mb-12">
+            Professional <span className="text-gradient">Timeline</span>
+          </h3>
+          <div className="max-w-5xl mx-auto">
             <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-primary"></div>
+              {/* Center line - hidden on mobile, visible on tablet+ */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-secondary to-accent hidden md:block"></div>
               
-              <div className="space-y-16">
+              <div className="space-y-12 md:space-y-16">
                 {[
                   {
                     year: "2024 - Present",
                     title: "Senior Associate (Lead)",
                     company: "Publicis Sapient",
                     description: "Leading digital transformation initiatives for Fortune 500 clients across the US markets. Specializing in AI-driven solutions and enterprise architecture.",
+                    icon: Rocket,
                     side: "left"
                   },
                   {
@@ -118,6 +130,7 @@ export default function About() {
                     title: "Associate Technology Consultant",
                     company: "Publicis Sapient",
                     description: "Led cross-functional teams in delivering complex technology solutions. Focused on cloud migration and digital innovation projects.",
+                    icon: Trophy,
                     side: "right"
                   },
                   {
@@ -125,6 +138,7 @@ export default function About() {
                     title: "Senior Software Engineer",
                     company: "Technology Consulting",
                     description: "Developed scalable software solutions and mentored junior developers. Specialized in full-stack development and system architecture.",
+                    icon: Target,
                     side: "left"
                   },
                   {
@@ -132,33 +146,48 @@ export default function About() {
                     title: "Software Engineer",
                     company: "Early Career",
                     description: "Started the journey in software development, building foundational skills in programming and system design.",
+                    icon: Briefcase,
                     side: "right"
                   }
                 ].map((item, index) => (
-                  <div key={index} className="relative flex items-center">
+                  <div key={index} className="relative flex flex-col md:flex-row items-center">
                     {item.side === 'left' ? (
                       <>
-                        <div className="w-1/2 pr-8 text-right">
+                        {/* Desktop layout - content on left */}
+                        <div className="w-full md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
                           <Card className="hover-lift">
                             <CardContent className="p-6">
-                              <div className="text-sm text-primary font-semibold mb-2">{item.year}</div>
+                              <Badge className="mb-2 bg-primary/10 text-primary border-primary/20">
+                                {item.year}
+                              </Badge>
                               <h4 className="font-heading font-semibold text-lg mb-1">{item.title}</h4>
                               <div className="text-secondary font-medium mb-3">{item.company}</div>
                               <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                             </CardContent>
                           </Card>
                         </div>
-                        <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
-                        <div className="w-1/2"></div>
+                        {/* Icon */}
+                        <div className="z-20 flex items-center justify-center bg-gradient-primary shadow-strong w-12 h-12 rounded-full my-4 md:my-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+                          <item.icon className="w-6 h-6 text-white" />
+                        </div>
+                        {/* Spacer for desktop */}
+                        <div className="hidden md:block md:w-1/2"></div>
                       </>
                     ) : (
                       <>
-                        <div className="w-1/2"></div>
-                        <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
-                        <div className="w-1/2 pl-8 text-left">
+                        {/* Spacer for desktop */}
+                        <div className="hidden md:block md:w-1/2"></div>
+                        {/* Icon */}
+                        <div className="z-20 flex items-center justify-center bg-gradient-primary shadow-strong w-12 h-12 rounded-full my-4 md:my-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+                          <item.icon className="w-6 h-6 text-white" />
+                        </div>
+                        {/* Desktop layout - content on right */}
+                        <div className="w-full md:w-1/2 md:pl-8 md:text-left mb-4 md:mb-0">
                           <Card className="hover-lift">
                             <CardContent className="p-6">
-                              <div className="text-sm text-primary font-semibold mb-2">{item.year}</div>
+                              <Badge className="mb-2 bg-primary/10 text-primary border-primary/20">
+                                {item.year}
+                              </Badge>
                               <h4 className="font-heading font-semibold text-lg mb-1">{item.title}</h4>
                               <div className="text-secondary font-medium mb-3">{item.company}</div>
                               <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
@@ -221,20 +250,25 @@ export default function About() {
         </div>
 
         {/* Mission, Vision, Values */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {values.map((value, index) => (
-            <Card key={index} className="hover-lift">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                  <value.icon className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="font-heading font-semibold text-lg mb-3">{value.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {value.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+        <div>
+          <h3 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-center mb-12">
+            Mission, Vision & <span className="text-gradient">Values</span>
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
+              <Card key={index} className="hover-lift">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                    <value.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{value.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {value.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>
